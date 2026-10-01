@@ -116,6 +116,25 @@ def duration_in_hours(minutes):
     return f"{hours}ч {remaining_minutes}м"
 
 
+def rating_tier(rating):
+    if rating >= 9:
+        return "шедевр"
+    elif rating >= 7:
+        return "хорошо"
+    else:
+        return "средне" if rating >= 5 else "слабо"
+
+
+def decade_label(year):
+    match year:
+        case _ if year > 2020:
+            return "новые"
+        case _ if 2015 <= year <= 2020:
+            return "недавние"
+        case _:
+            return "старые"
+
+
 def main():
     print(f"Фильмов в каталоге: {len(movies)}")
 
