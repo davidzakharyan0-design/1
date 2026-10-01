@@ -1,3 +1,5 @@
+import math
+
 movies = [
     {
         "title": "The Dune Chronicles",
@@ -80,6 +82,38 @@ movies = [
         "actors": ["P. Diaz", "T. Chalamet"],
     },
 ]
+
+
+def average_rating(movies):
+    if not movies:
+        raise ValueError("Каталог пуст: средний рейтинг не определён.")
+
+    total = 0
+    for movie in movies:
+        total += movie["rating"]
+
+    return round(total / len(movies), 1)
+
+
+def catalog_age_stats(movies, current_year=2026):
+    if not movies:
+        raise ValueError("Каталог пуст: возраст фильмов не определён.")
+
+    ages = []
+    for movie in movies:
+        ages.append(current_year - movie["year"])
+
+    oldest = max(ages)
+    newest = min(ages)
+    average = math.ceil(sum(ages) / len(ages))
+
+    return oldest, newest, average
+
+
+def duration_in_hours(minutes):
+    hours = minutes // 60
+    remaining_minutes = minutes % 60
+    return f"{hours}ч {remaining_minutes}м"
 
 
 def main():
